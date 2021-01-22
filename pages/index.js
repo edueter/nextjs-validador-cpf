@@ -66,129 +66,16 @@ export default function Home() {
           letterSpacing: 'wide',
         }
       },
-    },
-    botao: {
-
     }
   }
 
-  const CartaoHeader = () => {
-    const { common, letteringCPF } = styles.cartao.header
-    return (
-      <Flex
-        flexWrap="wrap"
-        zIndex="docked"
-        mb={2}
-        className="header">
-        <HStack spacing={4}>
-          <AspectRatio ratio={810 / 541} w={16} className="logo--receita">
-            <Image src="/receita-federal-logo.png" alt="Receita Federal" layout="fill" objectFit="contain" />
-          </AspectRatio>
-          <Stack
-            spacing={0}
-            direction="column"
-            fontWeight={common.fontWeight}
-            fontSize={common.fontSize}
-            letterSpacing={common.letterSpacing}
-          >
-            <Text
-              as="span"
-              textTransform="uppercase"
-            >Ministério da Fazenda</Text>
-            <Text
-              as="span"
-            >Secretaria da Receita Federal</Text>
-          </Stack>
-        </HStack>
-        <Text
-          lineHeight={letteringCPF.lineHeight}
-          ml={letteringCPF.ml}
-          fontSize={letteringCPF.fontSize}
-          fontWeight={letteringCPF.fontWeight}
-          letterSpacing={letteringCPF.letterSpacing}
-          as="span">CPF</Text>
-      </Flex>
-    )
-  }
-
-  const CartaoBody = () => {
-
-    const { common, heading, label, input } = styles.cartao.body
-
-    return (
-      <>
-        <Heading
-          fontSize={heading.fontSize}
-          fontWeight={common.fontWeight}
-          letterSpacing={heading.letterSpacing}
-          color={common.color}
-          as="h2">
-          Cadastro de Pessoas Físicas
-          </Heading>
-        <FormLabel
-          mt={0}
-          fontSize={label.fontSize}
-          fontWeight={common.fontWeight}
-          letterSpacing={label.letterSpacing}
-          color={common.color}
-          as="span">Número de Inscrição</FormLabel>
-        <Stack
-          spacing={0}
-          zIndex="docked"
-          id="cpf"
-          maxW={['auto', , 72]}>
-          <Tooltip
-            label="Insira aqui o CPF a ser validado."
-            openDelay={500}
-            placement="bottom"
-            hasArrow
-            arrowPadding={2}>
-            <Input
-              id="cpf"
-              w="11ch"
-              variant="flushed"
-              type="number"
-              color={input.color}
-              fontSize={input.fontSize}
-              fontWeight={input.fontWeight}
-              letterSpacing={input.letterSpacing}
-              value={inputs.cpf}
-              onChange={handleChange} />
-          </Tooltip>
-          <FormErrorMessage>
-            <Text color="white" as="span" fontStyle="italic" fontSize="xs">
-              {!valido && "Este não é um CPF válido. Tente novamente"}
-            </Text>
-          </FormErrorMessage>
-        </Stack>
-      </>
-    )
-  }
-
-  const CartaoBkg = () => {
-    return (
-      <AspectRatio
-        className="background"
-        zIndex="base"
-        ratio={279 / 300}
-        w="40%"
-        pos="absolute"
-        top="0"
-        right="5%"
-        bottom="0"
-        style={{ mixBlendMode: "multiply", opacity: '.4' }}>
-        <Image src="/bkg.png" alt="República Federativa do Brasil" layout="fill" objectFit="contain" />
-      </AspectRatio>
-    )
-  }
-
-  const { body } = styles.cartao
+  const { body, header } = styles.cartao
   const validado = valido !== undefined
   const [focus, setFocus] = useState('')
   const handleFocus = () => {
     setFocus(true);
   }
-  
+
   return (
     <Flex as="wrapper" flexDir="column" flex="1" minH="100vh" bgColor="white" bgImage="url('/sprinkles.png')">
       <Grid placeItems="center" as="main" alignItems="center" minH="80vh">
@@ -200,8 +87,7 @@ export default function Home() {
           <Heading
             w="fit-content"
           >Validador de CPF</Heading>
-          <FormControl
-            as={Stack}
+          <Stack
             pos="relative"
             className="cartao--cpf"
             transition="all .2s ease-in-out"
@@ -213,12 +99,54 @@ export default function Home() {
             py={5}
             px={6}
             spacing={0}
-            borderRadius="xl"     
+            borderRadius="xl"
             boxShadow={focus === true ? "dark-lg" : "2xl"}
-            isInvalid={validado && valido === false}
-            isRequired>
-            <CartaoBkg />
-            <CartaoHeader />
+          >
+            <AspectRatio
+              className="background"
+              zIndex="base"
+              ratio={279 / 300}
+              w="40%"
+              pos="absolute"
+              top="0"
+              right="5%"
+              bottom="0"
+              style={{ mixBlendMode: "multiply", opacity: '.4' }}>
+              <Image src="/bkg.png" alt="República Federativa do Brasil" layout="fill" objectFit="contain" />
+            </AspectRatio>
+            <Flex
+              flexWrap="wrap"
+              zIndex="docked"
+              mb={2}
+              className="header">
+              <HStack spacing={4}>
+                <AspectRatio ratio={810 / 541} w={16} className="logo--receita">
+                  <Image src="/receita-federal-logo.png" alt="Receita Federal" layout="fill" objectFit="contain" />
+                </AspectRatio>
+                <Stack
+                  spacing={0}
+                  direction="column"
+                  fontWeight={header.common.fontWeight}
+                  fontSize={header.common.fontSize}
+                  letterSpacing={header.common.letterSpacing}
+                >
+                  <Text
+                    as="span"
+                    textTransform="uppercase"
+                  >Ministério da Fazenda</Text>
+                  <Text
+                    as="span"
+                  >Secretaria da Receita Federal</Text>
+                </Stack>
+              </HStack>
+              <Text
+                lineHeight={header.letteringCPF.lineHeight}
+                ml={header.letteringCPF.ml}
+                fontSize={header.letteringCPF.fontSize}
+                fontWeight={header.letteringCPF.fontWeight}
+                letterSpacing={header.letteringCPF.letterSpacing}
+                as="span">CPF</Text>
+            </Flex>
             <Heading
               fontSize={body.heading.fontSize}
               fontWeight={body.common.fontWeight}
@@ -227,45 +155,51 @@ export default function Home() {
               as="h2">
               Cadastro de Pessoas Físicas
             </Heading>
-            <FormLabel
-              mt={0}
-              fontSize={body.label.fontSize}
-              fontWeight={body.common.fontWeight}
-              letterSpacing={body.label.letterSpacing}
-              color={validado && (valido === false ? 'black' : 'green.900') || body.common.color}
-              as="span">Número de Inscrição</FormLabel>
-            <Stack
-              spacing={0}
-              zIndex="docked"
-              id="cpf"
-              maxW={['auto', , 72]}>
-              <Tooltip
-                label="Insira aqui o CPF a ser validado."
-                openDelay={500}
-                placement="bottom"
-                defaultIsOpen
-                hasArrow
-                arrowPadding={2}>
-                <Input
-                  id="cpf"
-                  w="11ch"
-                  variant="flushed"
-                  type="number"
-                  color={body.input.color}
-                  fontSize={body.input.fontSize}
-                  fontWeight={body.input.fontWeight}
-                  letterSpacing={body.input.letterSpacing}
-                  value={inputs.cpf}
-                  onChange={handleChange} 
-                  onFocus={handleFocus}/>
-              </Tooltip>
-              <FormErrorMessage>
-                <Text color="white" as="span" fontStyle="italic" fontSize="xs">
-                  {!valido && "Este não é um CPF válido. Tente novamente"}
-                </Text>
-              </FormErrorMessage>
-            </Stack>
-          </FormControl>
+            <FormControl
+              isInvalid={validado && valido === false}
+              isRequired
+            >
+
+              <FormLabel
+                mt={0}
+                fontSize={body.label.fontSize}
+                fontWeight={body.common.fontWeight}
+                letterSpacing={body.label.letterSpacing}
+                color={validado && (valido === false ? 'black' : 'green.900') || body.common.color}
+                as="span">Número de Inscrição</FormLabel>
+              <Stack
+                spacing={0}
+                zIndex="docked"
+                id="cpf"
+                maxW={['auto', , 72]}>
+                <Tooltip
+                  label="Insira aqui o CPF a ser validado."
+                  openDelay={500}
+                  placement="bottom"
+                  defaultIsOpen
+                  hasArrow
+                  arrowPadding={2}>
+                  <Input
+                    id="cpf"
+                    w="11ch"
+                    variant="flushed"
+                    type="number"
+                    color={body.input.color}
+                    fontSize={body.input.fontSize}
+                    fontWeight={body.input.fontWeight}
+                    letterSpacing={body.input.letterSpacing}
+                    value={inputs.cpf}
+                    onChange={handleChange}
+                    onFocus={handleFocus} />
+                </Tooltip>
+                <FormErrorMessage>
+                  <Text color="white" as="span" fontStyle="italic" fontSize="xs">
+                    {!valido && "Este não é um CPF válido. Tente novamente"}
+                  </Text>
+                </FormErrorMessage>
+              </Stack>
+            </FormControl>
+          </Stack>
           <Button
             w="fit-content"
             px={4}

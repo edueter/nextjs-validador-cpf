@@ -1,10 +1,12 @@
-const { chakra, Box, Text, Flex } = require("@chakra-ui/react")
+const { chakra, Box, Text, Flex, Icon } = require("@chakra-ui/react")
 const { default: Link } = require("next/link")
+import { FaGithub } from 'react-icons/fa'
+
 
 const Footer = () => {
-  const CustomLink = ({ children, href }) => {
+  const CustomLink = ({ children, href, passHref }) => {
     return (
-      <Link href={href} passHref>
+      <Link href={href} passHref={passHref}>
         <chakra.a
           cursor="pointer"
           textDecoration="underline"
@@ -22,12 +24,12 @@ const Footer = () => {
   return (
     <Box as="footer" bgColor="gray.50" w="100%" py={12} mt="auto">
       <Flex flexDir="column" alignContent="center" flexWrap="wrap">
-        <Text display="flex" textAlign="center">Feito com
-            <CustomLink href="https://nextjs.org">
+        <Text display="flex" textAlign="center" w="fit-content" mx="auto">Feito com
+            <CustomLink href="https://nextjs.org" passHref>
             Next.JS
             </CustomLink>
             +
-            <CustomLink href="https://chakra-ui.com/">
+            <CustomLink href="https://chakra-ui.com/" passHref>
             Chakra-UI
             </CustomLink>
             e hospedado na
@@ -41,12 +43,12 @@ const Footer = () => {
             />
           </Link>.
           </Text>
-          <Text textAlign="center">
-            Inspirado <CustomLink href="https://www.devmedia.com.br/validar-cpf-com-javascript/23916">
+          <Text textAlign="center" w="fit-content" mx="auto">
+            Inspirado <CustomLink href="https://www.devmedia.com.br/validar-cpf-com-javascript/23916" passHref>
               neste tutorial
-            </CustomLink> do <CustomLink href="https://devmedia.com.br">
+            </CustomLink> do <CustomLink href="https://devmedia.com.br" passHref>
               devmedia.com.br
-            </CustomLink>.
+            </CustomLink>. Encontre este projeto no <CustomLink href="https://github.com/edueter/nextjs-validador-cpf" passHref>GitHub<Icon ml={1} as={FaGithub} /></CustomLink>.
           </Text>
       </Flex>
     </Box>
