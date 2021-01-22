@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import {
   AspectRatio,
-  Box,
   Button,
   Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
   Grid,
-  GridItem,
   Heading,
   HStack,
   Input,
@@ -187,7 +185,7 @@ export default function Home() {
   const { body } = styles.cartao
   const validado = valido !== undefined
   return (
-    <Flex as="wrapper" flexDir="column" flex="1" minH="100vh">
+    <Flex as="wrapper" flexDir="column" flex="1" minH="100vh" bgColor="white" bgImage="url('/sprinkles.png')">
       <Grid placeItems="center" as="main" alignItems="center" minH="80vh">
         <Stack
           as="container"
@@ -208,7 +206,7 @@ export default function Home() {
             h={64}
             p={4}
             spacing={0}
-            borderRadius="xl"
+            borderRadius="xl"     
             boxShadow="dark-lg"
             isInvalid={validado && valido === false}
             isRequired>
