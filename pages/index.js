@@ -184,6 +184,11 @@ export default function Home() {
 
   const { body } = styles.cartao
   const validado = valido !== undefined
+  const [focus, setFocus] = useState('')
+  const handleFocus = () => {
+    setFocus(true);
+  }
+  
   return (
     <Flex as="wrapper" flexDir="column" flex="1" minH="100vh" bgColor="white" bgImage="url('/sprinkles.png')">
       <Grid placeItems="center" as="main" alignItems="center" minH="80vh">
@@ -200,6 +205,7 @@ export default function Home() {
             pos="relative"
             className="cartao--cpf"
             transition="all .2s ease-in-out"
+            transform={focus && 'translate3d(3px, 3px, 0)'}
             bgColor={validado && (valido === false ? 'red.700' : 'green.600') || "blue.600"}
             color="white"
             w={96}
@@ -208,7 +214,7 @@ export default function Home() {
             px={6}
             spacing={0}
             borderRadius="xl"     
-            boxShadow="dark-lg"
+            boxShadow={focus === true ? "dark-lg" : "2xl"}
             isInvalid={validado && valido === false}
             isRequired>
             <CartaoBkg />
@@ -250,7 +256,8 @@ export default function Home() {
                   fontWeight={body.input.fontWeight}
                   letterSpacing={body.input.letterSpacing}
                   value={inputs.cpf}
-                  onChange={handleChange} />
+                  onChange={handleChange} 
+                  onFocus={handleFocus}/>
               </Tooltip>
               <FormErrorMessage>
                 <Text color="white" as="span" fontStyle="italic" fontSize="xs">
