@@ -236,6 +236,7 @@ export default function Home() {
                 label="Insira aqui o CPF a ser validado."
                 openDelay={500}
                 placement="bottom"
+                defaultIsOpen
                 hasArrow
                 arrowPadding={2}>
                 <Input
