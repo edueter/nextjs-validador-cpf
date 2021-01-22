@@ -204,7 +204,8 @@ export default function Home() {
             color="white"
             w={96}
             h={64}
-            p={4}
+            py={5}
+            px={6}
             spacing={0}
             borderRadius="xl"     
             boxShadow="dark-lg"
