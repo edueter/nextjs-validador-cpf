@@ -6,6 +6,15 @@ const theme = extendTheme({
       'html': {
         fontSize: '16px',
       },
+      'a': {
+        cursor: 'pointer',
+        textDecoration: 'underline',
+        fontWeight: '500',
+        transition: 'color .2s ease-in-out',
+        _hover: {
+          color: 'teal.500',
+        }
+      }
     },
   }
 })
