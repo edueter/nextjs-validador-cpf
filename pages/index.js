@@ -46,14 +46,14 @@ export default function Home() {
     cartao: {
       header: {
         common: {
-          fontSize: 'sm',
+          fontSize: ['xs', 'sm'],
           fontWeight: '600',
           letterSpacing: 'wider',
         },
         letteringCPF: {
           lineHeight: '1em',
           ml: 24,
-          fontSize: '6xl',
+          fontSize: ['5xl','6xl'],
           fontWeight: '700',
           letterSpacing: 'tight',
         }
@@ -68,12 +68,12 @@ export default function Home() {
           letterSpacing: 'tight',
         },
         label: {
-          fontSize: 'sm',
+          fontSize: ['xs','sm'],
           letterSpacing: 'tight',
         },
         input: {
           color: 'white',
-          fontSize: '3xl',
+          fontSize: ['xl','3xl'],
           fontWeight: '600',
           letterSpacing: 'wide',
         }
@@ -107,8 +107,9 @@ export default function Home() {
               transform={focus && 'translate3d(3px, 3px, 0)'}
               bgColor={validado && (valido === false ? 'red.700' : 'green.600') || "blue.600"}
               color="white"
-              w={96}
-              h={64}
+              w={['100%', 96]}
+              maxW={[80, 'auto']}
+              h={[56,64]}
               py={5}
               px={6}
               spacing={0}
@@ -133,7 +134,7 @@ export default function Home() {
                 mb={2}
                 className="header">
                 <HStack spacing={4}>
-                  <AspectRatio ratio={810 / 541} w={16} className="logo--receita">
+                  <AspectRatio ratio={810 / 541} w={16} mt={[2, 0]} className="logo--receita">
                     <Image src="/receita-federal-logo.png" alt="Receita Federal" layout="fill" objectFit="contain" />
                   </AspectRatio>
                   <Stack
